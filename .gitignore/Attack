@@ -1,0 +1,40 @@
+class Attack {
+  float ellipseSize=0;
+
+  float AttackX;
+  float AttackY;
+  Attack(float X, float Y) {
+    this.AttackX=X;
+    this.AttackY=Y;
+  }
+
+  void display() {
+    image(AttackImg, AttackX, AttackY);
+  }
+
+  void checkCollision() {
+    if (isHit(AttackX, AttackY, 50, 50, playerX+screenX, playerY, 60, 60) ) {
+      AttackX=random(0, width);
+      AttackY=random(0, height);
+      fireCheck=true;
+    };
+  }
+
+  void fire() {
+    if ( fireCheck2==true) {
+      fill(255, 0, 0);
+      strokeWeight(5);
+      stroke(255, 0, 0);
+      noFill();
+      ellipse(playerX, playerY, ellipseSize, ellipseSize);
+      ellipseSize+=5;    
+      if (ellipseSize>=200) {       
+        ellipseSize=0;
+        fireCheck=false;
+        fireCheck2=false;
+      }
+      
+    }
+    
+  }
+}
