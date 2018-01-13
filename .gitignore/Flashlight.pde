@@ -1,30 +1,18 @@
 class Flashlight {
-  int FlashlightTime=0;
-  int FlashlightTimeStop=600;
-  float FlashlightX;
-  float FlashlightY;
-  
-  Flashlight(float X, float Y) {
-    this.FlashlightX=X;
-    this.FlashlightY=Y;
-  }
+  float FlashlightX=random(500, 800);
+  float FlashlightY=random(100, 600);
 
   void display() {
-    image(FlashlightImg, FlashlightX, FlashlightY);
+    if (flashlightAlive==true) {
+      image(FlashlightImg, FlashlightX, FlashlightY);
+    }
   }
-
   void checkCollision() {
-    if (isHit(FlashlightX, FlashlightY, 50, 50, playerX+screenX, playerY, 60, 60)) {
-      FlashlightX=random(0, width);
-      FlashlightY=random(0, height);
-      bgBigCheck=true;
-    };
-    if (bgBigCheck==true) {
-      FlashlightTime++;
-      if (FlashlightTime==FlashlightTimeStop) {
-        FlashlightTime=0;
-        bgBigCheck=false;
-      }
+    if (flashlightAlive==true) {
+      if (isHit(FlashlightX, FlashlightY, 50, 50, playerX+screenX, playerY, 60, 60)) {
+        flashlightAlive=false;
+        bgBigCheck=true;
+      };
     }
   }
 }
