@@ -12,7 +12,7 @@ class Pool {
   }
 
   void checkCollision() {
-    if (isHit(PoolX, PoolY, 450, 300, playerX+screenX, playerY, 50, 50)) {
+    if (isHit(PoolX, PoolY, 450, 350, playerX+screenX, playerY, 50, 50)) {
       playerSpeedSlow=true;
     } else {
       playerSpeedSlow=false;
