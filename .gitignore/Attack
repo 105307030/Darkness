@@ -1,23 +1,21 @@
 class Attack {
   float ellipseSize=0;
-
-  float AttackX;
-  float AttackY;
-  Attack(float X, float Y) {
-    this.AttackX=X;
-    this.AttackY=Y;
-  }
+  float AttackX=random(1500, 1600);
+  ;
+  float AttackY=random(100, 600);
 
   void display() {
-    image(AttackImg, AttackX, AttackY);
+    if (attackAlive==true) {
+      image(AttackImg, AttackX, AttackY);
+    }
   }
-
   void checkCollision() {
-    if (isHit(AttackX, AttackY, 50, 50, playerX+screenX, playerY, 60, 60) ) {
-      AttackX=random(0, width);
-      AttackY=random(0, height);
-      fireCheck=true;
-    };
+    if (attackAlive==true) {
+      if (isHit(AttackX, AttackY, 50, 50, playerX+screenX, playerY, 60, 60) ) {
+        fireCheck=true;
+        attackAlive=false;
+      };
+    }
   }
 
   void fire() {
@@ -30,11 +28,8 @@ class Attack {
       ellipseSize+=5;    
       if (ellipseSize>=200) {       
         ellipseSize=0;
-        fireCheck=false;
         fireCheck2=false;
       }
-      
     }
-    
   }
 }
